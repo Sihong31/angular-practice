@@ -13,7 +13,7 @@ export class ServerComponent implements OnInit, OnDestroy {
   paramsSubscription: Subscription;
 
   constructor(private serversService: ServersService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
               private router: Router) {
   }
 
