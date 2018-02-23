@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ServersService } from '../servers.service';
 
@@ -18,15 +18,20 @@ export class ServerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const routeId = +this.route.snapshot.params['id'];
-    this.server = this.serversService.getServer(routeId);
-
-    //used when updating data on the same component that has a link which shows different data but on the same component
-    this.paramsSubscription = this.route.params.subscribe(
-      (params: Params) => {
-        this.server = this.serversService.getServer(+params['id']);
+    this.route.data.subscribe(
+      (data: Data) => {
+        this.server = data['server']
       }
     )
+    // const routeId = +this.route.snapshot.params['id'];
+    // this.server = this.serversService.getServer(routeId);
+    //
+    // //used when updating data on the same component that has a link which shows different data but on the same component
+    // this.paramsSubscription = this.route.params.subscribe(
+    //   (params: Params) => {
+    //     this.server = this.serversService.getServer(+params['id']);
+    //   }
+    // )
   }
 
   ngOnDestroy() {
