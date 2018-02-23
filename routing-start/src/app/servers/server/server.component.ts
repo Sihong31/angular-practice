@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ServersService } from '../servers.service';
@@ -8,7 +8,7 @@ import { ServersService } from '../servers.service';
   templateUrl: './server.component.html',
   styleUrls: ['./server.component.css']
 })
-export class ServerComponent implements OnInit, OnDestroy {
+export class ServerComponent implements OnInit {
   server: {id: number, name: string, status: string};
   paramsSubscription: Subscription;
 
@@ -32,10 +32,6 @@ export class ServerComponent implements OnInit, OnDestroy {
     //     this.server = this.serversService.getServer(+params['id']);
     //   }
     // )
-  }
-
-  ngOnDestroy() {
-    this.paramsSubscription.unsubscribe();
   }
 
   onEdit() {

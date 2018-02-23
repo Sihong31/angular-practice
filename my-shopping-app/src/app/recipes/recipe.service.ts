@@ -48,4 +48,8 @@ export class RecipeService {
     //using slice() here returns a new copy of our array so that access is not granted to edit original array.
   }
 
+  getRecipe(index: number) {
+    return this.recipes[index];
+  }
+
 }
