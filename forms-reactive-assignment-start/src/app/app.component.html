@@ -22,6 +22,10 @@
             type="text"
             id="project-name"
             formControlName="projectName"/>
+            <span class="help-block" *ngIf="!signupForm.get('projectName').valid && signupForm.get('projectName').touched">
+              <span class="help-block" *ngIf="signupForm.get('projectName').errors?.projectNameIsForbidden">This Project Name is invalid</span>
+              <span class="help-block" *ngIf="signupForm.get('projectName').errors?.required">Please enter a project name</span>
+            </span>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -30,19 +34,14 @@
             type="text"
             id="email"
             formControlName="email"/>
+            <span class="help-block" *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">Enter a valid email!</span>
         </div>
         <div class="form-group">
           <label for="projectStatus">Project Status</label>
           <select
             class="form-control" formControlName="projectStatus">
-            <option>
-              Stable
-            </option>
-            <option>
-              Critical
-            </option>
-            <option>
-              Finished
+            <option *ngFor="let status of projectStatuses" [value]="status">
+              {{ status }}
             </option>
           </select>
         </div>
