@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
-import { Store } from '@ngrx/Store';
+import { Store } from '@ngrx/store';
 
 import { Ingredient } from '../../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
@@ -47,7 +47,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     if (this.editMode) {
       this.slService.updateIngredient(this.editedItemIndex, newIngredient);
     } else {
-      this.store.dispatch(new ShoppingListActions.AddIngredient());
+      this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));
     }
     this.editMode = false;
     form.reset();
